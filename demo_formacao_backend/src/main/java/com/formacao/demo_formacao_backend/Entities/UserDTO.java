@@ -25,5 +25,4 @@ public class UserDTO {
     public int getAge() {
         return age;
     }
-
 }

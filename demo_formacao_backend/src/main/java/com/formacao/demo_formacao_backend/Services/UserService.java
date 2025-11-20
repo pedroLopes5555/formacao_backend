@@ -10,8 +10,6 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
 
-
-
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -25,7 +23,21 @@ public class UserService implements IUserService {
     // Create user
     @Transactional //when should i use it ? (makes the methos calles atomic)
     public UserDTO createUser(String name, int age, String password) {
+
+        //de acordo com os principios SOLID o códdigo é correto ?
+        //              |               |
+        //              V               V
+        if(name.length() < 3 || age < 0 || age > 100) {
+            return null; //mais a frente deveria ser uma exceção
+        }
+
+
         User user = new User(name, age, password);
+
+        /*
+        funcao de hash a password
+        */
+
         var saved = userRepository.save(user);
         return new UserDTO(saved.getId(), saved.getName(), saved.getAge());
     }

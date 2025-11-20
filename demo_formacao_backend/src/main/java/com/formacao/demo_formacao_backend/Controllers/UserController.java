@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class UserController {
 
+
     private final IUserService userService;
 
     /**
@@ -61,4 +62,41 @@ public class UserController {
         var users = userService.getAllByName(name);
         return ResponseEntity.ok(users);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Ideal quando:
+
+Envia muitos dados
+
+Corpo complexo (objetos dentro de objetos)
+
+Você quer validação (@Valid)
+
+Você já tem um DTO*/
+
+
+    /*
+    * Exemplos de uso típico:
+
+Filtros
+
+Parâmetros simples
+
+Configurações
+
+Valores pequenos
+
+Quando o cliente envia poucos dados
+* */
 }
