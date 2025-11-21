@@ -1,5 +1,6 @@
 package com.formacao.demo_formacao_backend.Controllers;
 
+import com.formacao.demo_formacao_backend.Entities.UserDTO;
 import com.formacao.demo_formacao_backend.Services.IUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,19 @@ public class UserController {
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id,
+                                        @RequestParam String name,
+                                        @RequestParam int age,
+                                        @RequestParam String password)
+    {
+
+        var user = userService.updateUser(id, name, age, password);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+
+
     /**
      * Get a user by ID.
      *
@@ -62,41 +76,4 @@ public class UserController {
         var users = userService.getAllByName(name);
         return ResponseEntity.ok(users);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*Ideal quando:
-
-Envia muitos dados
-
-Corpo complexo (objetos dentro de objetos)
-
-Você quer validação (@Valid)
-
-Você já tem um DTO*/
-
-
-    /*
-    * Exemplos de uso típico:
-
-Filtros
-
-Parâmetros simples
-
-Configurações
-
-Valores pequenos
-
-Quando o cliente envia poucos dados
-* */
 }

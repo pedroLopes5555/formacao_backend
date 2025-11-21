@@ -31,6 +31,10 @@ public interface IUserService {
 
 
     List<UserDTO> getAllByName(String name);
+
+
+
+    UserDTO updateUser(Long id, String name, int age,  String password);
 }
 
 

@@ -60,5 +60,22 @@ public class UserService implements IUserService {
                 .toList();
     }
 
+
+    public UserDTO updateUser(Long id, String name,int age, String password)
+    {
+        User user = userRepository.findUserById(id);
+        //check if exist
+        User updatedUser = new User(
+            user.getId(),
+            name,
+            age,
+            password);
+
+
+        User result = userRepository.save(updatedUser);
+
+        return new  UserDTO(result.getId(), result.getName(), result.getAge());
+
+    }
 }
 
